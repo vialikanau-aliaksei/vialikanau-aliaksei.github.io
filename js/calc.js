@@ -16,7 +16,7 @@ function calc(a, b, operation) {
       result = a / b;
       break;
     case 'int/':
-      result = Math.round(a / b);
+      result = (a / b) ^ 0;
       break;
   }
 

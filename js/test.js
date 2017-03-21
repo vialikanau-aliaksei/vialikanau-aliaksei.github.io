@@ -46,12 +46,20 @@ describe("calc", function () {
     assert.equal(calc('5', 2, "/"), 2.5);
   });
 
-  it("5 int/ 2 = 3", function () {
-    assert.equal(calc(5, 2, "int/"), 3);
+  it("5 int/ 2 = 2", function () {
+    assert.equal(calc(5, 2, "int/"), 2);
   });
 
   it("7 int/ 3 = 2", function () {
     assert.equal(calc(7, 3, "int/"), 2);
+  });
+
+  it("6.9 int/ 1 = 6", function () {
+    assert.equal(calc(6.9, 1, "int/"), 6);
+  });
+
+  it("-6.9 int/ 1 = -6", function () {
+    assert.equal(calc(-6.9, 1, "int/"), -6);
   });
 
 });
