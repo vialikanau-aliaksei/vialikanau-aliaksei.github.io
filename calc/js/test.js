@@ -62,4 +62,8 @@ describe("calc", function () {
     assert.equal(calc(-6.9, 1, "int/"), -6);
   });
 
+  it("-6.9 int/ 0 = -Infinity", function () {
+    assert.equal(calc(-6.9, 0, "int/"), -Infinity);
+  });
+
 });

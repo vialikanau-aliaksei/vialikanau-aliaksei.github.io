@@ -16,7 +16,8 @@ function calc(a, b, operation) {
       result = a / b;
       break;
     case 'int/':
-      result = (a / b) ^ 0;
+      result = a / b;
+      result = result > 0 ? Math.floor(result) : Math.ceil(result);
       break;
   }
 
