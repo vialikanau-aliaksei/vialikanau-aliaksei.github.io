@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Calc</title>
+  </head>
+  <body>
+    <form name="main">
+      <input type="text" name="firstOperand">
+      <select name="operation">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+        <option>int/</option>
+      </select>
+      <input type="text" name="secondOperand">
+      <input type="button" value="="
+             onclick="result.value=calc(+firstOperand.value, +secondOperand.value, operation.value)">
+      <br>result: <input type="textfield" name="result" value="">
+    </form>
+    <script src="js/calc.js"></script>
+  </body>
+</html>
