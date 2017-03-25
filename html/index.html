@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Simple html</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+  </head>
+  <body onload="document.getElementById('txt').value='loaded'">
+    <header>
+      <nav class="nav-bar">
+        <a href="">http://site.com</a>
+        <a href="">http://site.by</a>
+      </nav>
+    </header>
+    <main>
+      <div class="divText">
+        <input class="txt" type="text" accesskey="i" value="" tabindex="1" spellcheck="true">
+        <input name="txt" type="text" accesskey="o" value="" tabindex="3">
+        <input id="txt" type="text" accesskey="r" value="" tabindex="2" oncopy="onCopy()">
+        <input type="button" hidden value="button">
+        <input id="myButton" type="button" value="Ok" onmouseover="mouseOver()" onmouseout="mouseOut()">
+      </div>
+      <div class="divSelect">
+        <ol type="1">
+          <li>a</li>
+          <li>b</li>
+          <li>c</li>
+        </ol>
+        <select id="mySelect" onchange="selectFunc()">
+          <option value="1">value 1
+          <option value="2">value 2
+          <option value="3">value 3
+        </select>
+      </div>
+      <div class="divOther">
+
+        <em>Emphasized text</em><br>
+        <strong>Strong text</strong><br>
+        <code>SELECT * FROM table WHERE code = ?</code><br>
+      </div>
+    </main>
+    <footer>
+      <div class="footer_wrapper">
+        <h1>footer</h1>
+      </div>
+      <script src="js/main.js"></script>
+    </footer>
+  </body>
+</html>
