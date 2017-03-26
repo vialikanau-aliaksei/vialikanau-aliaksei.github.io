@@ -14,21 +14,14 @@ describe("isArray2", function () {
   });
 });
 
-describe("isArray3", function () {
-
-  it("[1,2]", function () {
-    assert.equal(isArray3([1, 2]), true);
-  });
-});
-
 describe("range", function () {
 
   it("range(5)", function () {
-    assert.deepEqual(range(5), [1, 2, 3, 4, 5]);
+    assert.deepEqual(range(5), [0, 1, 2, 3, 4]);
   });
 
-  it("range(2,4)", function () {
-    assert.deepEqual(range(2, 4), [2, 3, 4]);
+  it("range(1, 5)", function () {
+    assert.deepEqual(range(1, 5), [1, 2, 3, 4]);
   });
 
   it("range(1, 10, 2)", function () {
@@ -42,8 +35,8 @@ describe("range", function () {
 
 describe("compact", function () {
 
-  it("compact([1, 0, 3, false, 5])", function () {
-    assert.deepEqual(compact([1, 0, 3, false, 5]), [1, 3, 5]);
+  it("compact([1, 0, 3, false, 5, NaN, null, undefined, '', Infinity])", function () {
+    assert.deepEqual(compact([1, 0, 3, false, 5, NaN, null, undefined, '', Infinity]), [1, 3, 5, Infinity]);
   });
 });
 
@@ -61,17 +54,26 @@ describe("sum2", function () {
   });
 });
 
+
 describe("unique", function () {
+  var func = function () {
+    return 2;
+  };
+  var obj1 = {
+    val1: "value1"
+  };
+  var obj2 = {
+    val2: "value2"
+  };
 
-  it("unique([1, 2, 3, 3, 2])", function () {
-    assert.deepEqual(unique([1, 2, 3, 3, 2]), [1, 2, 3]);
+  it("unique([1, 2, 2, func, func, obj1, obj1, obj2, 'a', 'a'])", function () {
+    assert.deepEqual(unique([1, 2, 2, func, func, obj1, obj1, obj2, 'a', 'a']),
+      [1, 2, func, obj1, obj2, 'a']);
   });
-});
 
-describe("unique2", function () {
-
-  it("unique2([1, 2, 3, 3, 2])", function () {
-    assert.deepEqual(unique2([1, 2, 3, 3, 2]), [1, 2, 3]);
+  it("unique2([1, 2, 2, func, func, obj1, obj1, obj2, 'a', 'a'])", function () {
+    assert.deepEqual(unique2([1, 2, 2, func, func, obj1, obj1, obj2, 'a', 'a']),
+      [1, 2, func, obj1, obj2, 'a']);
   });
 });
 

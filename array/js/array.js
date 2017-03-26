@@ -1,25 +1,21 @@
 function isArray(object) {
-  return Array.isArray(object);
-}
-
-function isArray2(object) {
   return object.constructor.name == "Array";
 }
 
-function isArray3(object) {
+function isArray2(object) {
   return {}.toString.call(object) == "[object Array]";
 }
 
 function range(start, end, step) {
-  if (end == undefined) {
+  if (end === undefined) {
     end = start;
-    start = 1;
+    start = 0;
   }
-  if (step == undefined) {
+  if (step === undefined) {
     step = 1;
   }
   var array = [];
-  for (var i = start; i < end + 1; i = i + step) {
+  for (var i = start; i < end; i = i + step) {
     array.push(i);
   }
   return array;
@@ -27,7 +23,7 @@ function range(start, end, step) {
 
 function compact(array) {
   return array.filter(function (element) {
-    return element != false;
+    return element ? true : false;
   });
 }
 
@@ -45,27 +41,25 @@ function sum2(array) {
   return sum;
 }
 
+
 function unique(array) {
-  var set = {};
-  return array.filter(function (element) {
-    var isExist = set[element];
-    set[element] = true;
-    return !isExist;
+  var values = [];
+  array.forEach(function (element) {
+    if (!~values.indexOf(element)) {
+      values.push(element);
+    }
   })
+  return values;
 }
 
 function unique2(array) {
-  var set = {};
-  var i = 0;
-  while (i < array.length) {
-    if (set[array[i]]) {
-      array.splice(i, 1);
-    } else {
-      set[array[i]] = true;
-      i++;
+  var values = [];
+  for (var i = 0; i < array.length; i++) {
+    if (!~values.indexOf(array[i])) {
+      values.push(array[i]);
     }
   }
-  return array;
+  return values;
 }
 
 function last(array) {
@@ -73,20 +67,20 @@ function last(array) {
 }
 
 function excludeLast(array, count) {
-  if (count == undefined) {
-    --array.length;
-  } else {
-    array.length = array.length - count;
+  if (count === undefined) {
+    count = 1;
   }
-  return array;
+  return array.slice(0, array.length - count);
+
 }
 
 function excludeLast2(array, count) {
-  if (count == undefined) {
+  if (count === undefined) {
     count = 1;
   }
-  for (var i = 0; i < count; i++) {
-    array.pop();
+  var result = [];
+  for (var i = 0; i < array.length - count; i++) {
+    result.push(array[i]);
   }
-  return array;
+  return result;
 }
