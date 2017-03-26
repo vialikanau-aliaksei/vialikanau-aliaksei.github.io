@@ -93,6 +93,10 @@ describe("excludeLast", function () {
   it("excludeLast([1, 2, 3, 3, 2], 2)", function () {
     assert.deepEqual(excludeLast([1, 2, 3, 3, 2], 2), [1, 2, 3]);
   });
+
+  it("excludeLast([1, 2, 3, 3, 2], -2)", function () {
+    assert.deepEqual(excludeLast([1, 2, 3, 3, 2], -2), [1, 2, 3, 3, 2]);
+  });
 });
 
 describe("excludeLast2", function () {
@@ -103,5 +107,9 @@ describe("excludeLast2", function () {
 
   it("excludeLast2([1, 2, 3, 3, 2], 2)", function () {
     assert.deepEqual(excludeLast([1, 2, 3, 3, 2], 2), [1, 2, 3]);
+  });
+
+  it("excludeLast2([1, 2, 3, 3, 2], -2)", function () {
+    assert.deepEqual(excludeLast([1, 2, 3, 3, 2], -2), [1, 2, 3, 3, 2]);
   });
 });

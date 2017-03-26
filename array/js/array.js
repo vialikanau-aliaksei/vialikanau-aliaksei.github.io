@@ -23,7 +23,7 @@ function range(start, end, step) {
 
 function compact(array) {
   return array.filter(function (element) {
-    return element ? true : false;
+    return element;
   });
 }
 
@@ -48,7 +48,7 @@ function unique(array) {
     if (!~values.indexOf(element)) {
       values.push(element);
     }
-  })
+  });
   return values;
 }
 
@@ -70,6 +70,7 @@ function excludeLast(array, count) {
   if (count === undefined) {
     count = 1;
   }
+  count = count > 0 ? count : 0;
   return array.slice(0, array.length - count);
 
 }
@@ -78,6 +79,7 @@ function excludeLast2(array, count) {
   if (count === undefined) {
     count = 1;
   }
+  count = count > 0 ? count : 0;
   var result = [];
   for (var i = 0; i < array.length - count; i++) {
     result.push(array[i]);
