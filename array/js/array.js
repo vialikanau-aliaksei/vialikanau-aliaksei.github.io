@@ -3,7 +3,7 @@ function isArray(object) {
 }
 
 function isArray2(object) {
-  return {}.toString.call(object) == "[object Array]";
+  return ({}).toString.call(object) == "[object Array]";
 }
 
 function range(start, end, step) {
