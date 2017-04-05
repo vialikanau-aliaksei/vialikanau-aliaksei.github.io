@@ -1,25 +1,25 @@
 var assert = chai.assert;
 
-describe("_isSorted", function () {
+describe("isSorted", function () {
   var items = [1, 3, 5, 7, 8];
   it(items + "  is sorted", function () {
-    assert.equal(_isSorted(items), true);
+    assert.equal(isSorted(items), true);
   });
 });
 
-describe("_getArray", function () {
-  var items = _getArray(20);
-  it("_getArray(10): " + items, function () {
+describe("getArray", function () {
+  var items = getArray(20);
+  it("getArray(10): " + items, function () {
     assert.equal(items.length, 20);
   });
   it(items + " is sorted", function () {
-    assert.equal(_isSorted(items), true);
+    assert.equal(isSorted(items), true);
   });
 });
 
 describe("search", function () {
-  var even = _getArray(12);
-  var odd = _getArray(13);
+  var even = getArray(12);
+  var odd = getArray(13);
   var shuffled = [1, 7, 5, 2, 9];
   var abc = ['a', 'b', 'c', 'd', 'e'];
 
@@ -55,10 +55,25 @@ describe("search", function () {
       assert.equal(func(abc, 'd'), 3);
     });
 
-    var randomArray = _getArray(10000000);
+    var randomSize = Math.ceil(Math.random() * 1000000);
+    var randomArray = getArray(randomSize);
 
-    it(func.name + "(_getArray(" + randomArray.length + "), Infinity) = -1", function () {
+    it(func.name + "(getArray(" + randomArray.length + "), Infinity) = -1", function () {
       assert.equal(func(randomArray, Infinity), -1);
+    });
+
+    it(func.name + "(getArray(" + randomArray.length + "), randomArray[end]) = end", function () {
+      var end = randomArray.length - 1;
+      assert.equal(func(randomArray, randomArray[end]), end);
+    });
+
+    it(func.name + "(getArray(" + randomArray.length + "), randomArray[0]) = 0", function () {
+      assert.equal(func(randomArray, randomArray[0]), 0);
+    });
+
+    it(func.name + "(getArray(" + randomArray.length + "), randomArray[rand]) = rand", function () {
+      var rand = Math.ceil(Math.random() * randomArray.length);
+      assert.equal(func(randomArray, randomArray[rand]), rand);
     });
   }
 
@@ -70,5 +85,3 @@ describe("search", function () {
     test(recursiveBinarySearch);
   })
 });
-
-

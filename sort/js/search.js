@@ -1,10 +1,5 @@
-var RANDOM_STEP = 8;
-
-function _nextRandom() {
-  return Math.floor(Math.random() * RANDOM_STEP);
-}
-
-function _getArray(size) {
+function getArray(size) {
+  var RANDOM_STEP = 8;
   var array = [size];
   array[0] = Math.floor(Math.random() * (-size * RANDOM_STEP >> 2));
   for (var i = 1; i < size; i++) {
@@ -13,7 +8,7 @@ function _getArray(size) {
   return array;
 }
 
-function _isSorted(items) {
+function isSorted(items) {
   if (!Array.isArray(items)) return;
 
   var prev = -Infinity;
@@ -24,39 +19,26 @@ function _isSorted(items) {
   return true;
 }
 
-function _invalid(items, value) {
+function isInvalid(items, value) {
   return !Array.isArray(items) || value === undefined
 }
 
 function binarySearch(items, key) {
-  if (_invalid(items, key)) return;
-  var index = delta = items.length >>> 1;
-  var maxSteps = Math.ceil(Math.log(items.length) / Math.log(2));
-  for (var i = 0; items[index] !== key && i <= maxSteps; i++) {
-    var delta = delta > 2 ? delta >>> 1 : 1;
-    index += (items[index] > key) ? -delta : delta;
+  if (isInvalid(items, key)) return;
+  var index = items.length >>> 1;
+  var maxSteps = Math.log(items.length) / Math.log(2) - 2;
+  for (var i = 0; items[index] !== key && i <= Math.ceil(maxSteps) + 1; i++) {
+    index += (Math.round(Math.pow(2, maxSteps - i)) || 1) * ((items[index] > key) ? -1 : 1);
   }
   return items[index] === key ? index : -1;
 }
 
-
 function recursiveBinarySearch(items, key, left, right) {
-  if (_invalid(items, key)) return;
+  if (isInvalid(items, key)) return;
   if (left === undefined) left = 0;
-  if (right === undefined) right = items.length;
+  if (right === undefined) right = items.length - 1;
   var index = left + right >>> 1;
-  if (items[index] === key) return index;
-  if (left > right) return -1;
-  if (items[index] > key) {
-    return recursiveBinarySearch(items, key, left, index - 1);
-  } else {
-    return recursiveBinarySearch(items, key, index + 1, right);
-  }
+  return left > right ? -1 : items[index] === key ? index :
+    items[index] > key ? recursiveBinarySearch(items, key, left, index - 1)
+      : recursiveBinarySearch(items, key, index + 1, right);
 }
-
-
-
-
-
-
-
