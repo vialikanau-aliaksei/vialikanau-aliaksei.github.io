@@ -1,5 +1,26 @@
 var assert = chai.assert;
 
+function getArray(size) {
+  var RANDOM_STEP = 8;
+  var array = [size];
+  array[0] = Math.floor(Math.random() * (-size * RANDOM_STEP >> 2));
+  for (var i = 1; i < size; i++) {
+    array[i] = array[i - 1] + Math.floor(Math.random() * RANDOM_STEP + 1);
+  }
+  return array;
+}
+
+function isSorted(items) {
+  if (!Array.isArray(items)) return;
+
+  var prev = -Infinity;
+  for (var i = 0; i < items.length; i++) {
+    if (prev > items[i]) return false;
+    prev = items[i];
+  }
+  return true;
+}
+
 describe("isSorted", function () {
   var items = [1, 3, 5, 7, 8];
   it(items + "  is sorted", function () {
@@ -77,11 +98,11 @@ describe("search", function () {
     });
   }
 
-  describe(binarySearch.name, function () {
-    test(binarySearch);
+  describe("cyclic binary search", function () {
+    test(binarySearch.cyclic);
   });
 
-  describe(recursiveBinarySearch.name, function () {
-    test(recursiveBinarySearch);
+  describe("recursive binary search", function () {
+    test(binarySearch.recursive);
   })
 });
