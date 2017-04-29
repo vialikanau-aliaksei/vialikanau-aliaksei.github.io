@@ -3,11 +3,16 @@ var api = (function () {
   var key = "&api_key=2e6d7cc15d6b7121b49b5ef82db711b0";
   var format = "&format=json";
   var apiUrls = {
-    topArtist: service + "chart.gettopartists" + key + format,
+    topArtist: function (page) {
+      if (!page){
+        page = 1;
+      }
+      return service + "geo.gettopartists&country=Belarus&limit=12&page=" + page + key + format;
+    },
     searchArtist: function (artist) {
       return service + "artist.search&artist=" + artist + key + format;
     },
-    getArtistInfo: function (artist) {
+    createArtistInfoPage: function (artist) {
       return service + "artist.getinfo&artist=" + artist + key + format;
     },
     getArtistTopAlbums: function (artist) {

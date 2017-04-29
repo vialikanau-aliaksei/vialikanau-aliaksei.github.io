@@ -33,8 +33,8 @@ describe("getRequest.doGet", function () {
     });
   });
 
-  it("http.doGet(api.getArtistInfo('Dire+Straits'), function(){}) exec onload", function (done) {
-    http.doGet(api.getArtistInfo('Dire+Straits'), function () {
+  it("http.doGet(api.createArtistInfoPage('Dire+Straits'), function(){}) exec onload", function (done) {
+    http.doGet(api.createArtistInfoPage('Dire+Straits'), function () {
       done()
     }, function () {
       done(new Error("onerror reached"));
